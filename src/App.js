@@ -7,6 +7,8 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import logo from './page_logo.png';
+import Button from './Button.js';
+import Cards from './PreventionCards.js';
 
 function App() {
 
@@ -74,8 +76,12 @@ function App() {
             hair, and eyes. Melanoma is considered the most serious type of skin cancer because 
             it can spread quickly to other parts of the body, including the lymph nodes and organs</p>
             <hr />
+            <div className='PredictionFolder-ButtonDiv'>
+              <Button />
+            </div>
         </div>
       </div>
+      <div className='PreventionSpace' id='prevention'><Cards /></div>
     </div>
   );
 }

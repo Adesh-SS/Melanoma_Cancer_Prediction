@@ -185,7 +185,7 @@ html {
 
 .PredictSpace {
   background-color: rgb(255, 218, 169);
-  height: max-content;
+  height: 50em;
   padding: 1em;
 }
 
@@ -239,6 +239,17 @@ html {
   height: 15em;
   margin-top: -17em;
   border: 1px solid black;
+}
+
+.PredictionFolder-ButtonDiv {
+  margin-top: -10em;
+  margin-left: 25em;
+}
+
+.PreventionSpace {
+  background-color: blueviolet;
+  height: max-content;
+  padding: 1em;
 }
 /*@media (prefers-reduced-motion: no-preference) {
   .App-logo {
