@@ -1,31 +1,249 @@
+html {
+  scroll-behavior: smooth;
+}
+
 .App {
   text-align: center;
 }
 
+.App-header {
+  background-color: rgb(247, 247, 213);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  font-size: calc(10px + 2vmin);
+}
+
+.NaviDiv {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-right: 2em;
+}
+
 .App-logo {
-  height: 40vmin;
+  margin-top: -2em;
+  margin-left: -2em;
+  height: 10em;
   pointer-events: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+.navibar{
+  background-color: transparent;
+  width: 35%;
+  height: 4em;
+  padding: 0;
+  transition: top 0.3s ease-in-out;
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.navibar li{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  float: right;
+  margin-top: -.5em;
+  margin-right: 1em;
+}
+
+.navibar a{
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background: transparent;
+  text-decoration: none;
+  overflow: hidden;
+  font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  transform: translateZ(0);
+  transform: transition 0.5s ease;
+  font-size: .8em;
+}
+
+.navibar a:hover{
+  font-weight: lighter;
+  transform: translateZ(2px)
+}
+
+.box {
+  width: 120px;
+  height: auto;
+  float: left;
+  transition: .5s linear;
+  position: relative;
+  display: block;
+  overflow: hidden;
+  text-align: center;
+  margin: 0 2px;
+  background: transparent;
+  text-transform: uppercase;
+  font-weight: 900;
+  padding: 1em;
+}
+
+.box:before {
+  position: absolute;
+  content: '';
+  left: 0;
+  bottom: 0;
+  height: 4px;
+  width: 100%;
+  border-bottom: 4px solid transparent;
+  border-left: 4px solid transparent;
+  box-sizing: border-box;
+  transform: translateX(100%);
+}
+
+.box:after {
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  border-top: 4px solid transparent;
+  border-right: 4px solid transparent;
+  box-sizing: border-box;
+  transform: translateX(-100%);
+}
+
+.box:hover {
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+
+.box:hover:before {
+  border-color: #262626;
+  height: 100%;
+  transform: translateX(0);
+  transition: .3s transform linear, .3s height linear .3s;
+}
+
+.box:hover:after {
+  border-color: #262626;
+  height: 100%;
+  transform: translateX(0);
+  transition: .3s transform linear, .3s height linear .5s;
+}
+
+.TitleBefore {
+  font-family:'Courier New', Courier, monospace;
+  color: rgb(196, 132, 143);
+  margin-left: 4em;
+  margin-top: 2em;
+  letter-spacing: .1em;
+}
+
+.Type {
+  color: black;
+  letter-spacing: .1em;
+  margin-left: 5em;
+}
+
+.TypeWord {
+  margin-left: 3em;
+  margin-top: .005em;
+  font-family: 'Arial Narrow';
+  font-size: 2.2em;
+}
+
+.JumpInTag {
+  display: flex;
+  flex-direction: row;
+}
+
+.JumpInTag p {
+  font-family: 'Arial Narrow';
+  font-size: .8em;
+  margin-top: 8em;
+  margin-left: 7em;
+  letter-spacing: .2em;
+}
+
+.JumpInTag div {
+  margin-top: 6.2em;
+  margin-left: .5em;
+}
+
+.Socials {
+  position: fixed;
+  right: 2%;
+  top: 40%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.PredictSpace {
+  background-color: rgb(255, 218, 169);
+  height: max-content;
+  padding: 1em;
+}
+
+.PredictSpace-GradientDiv {
+  position: relative;
+  background-color: rgb(120, 120, 219);
+  background-image: linear-gradient(to bottom, rgb(120, 120, 219), rgb(100, 100, 179), beige, rgb(236, 236, 187));
+  height: 35em;
+  width: 23em;
+  top: 1em;
+  left: 1em;
+}
+
+.PredictSpace-BorderDiv {
+  background-color: white;
+  height: 37em;
+  width: 25em;
+  margin-top: 5em;
+  margin-bottom: 5em;
+  margin-left: 10em;  
+}
+
+.PredictionFolder {
+  position: relative;
+  top: -35em;
+  left: 20em;
+  background-color: rgb(219, 219, 110);
+  height: 25em;
+  width: 45em;
+}
+
+.PredictionFolder h2 {
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 1.5em;
+  text-align: center;
+  padding-top: 1em;
+}
+
+.PredictionFolder-TextArea{
+  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  width: 15em;
+  text-align: justify;
+  margin-left: 3em;
+  margin-top: 3em;
+  margin-right: 2em;
+  line-height: 1.5em;
+}
+
+.PredictionFolder hr {
+  width: .01em;
+  height: 15em;
+  margin-top: -17em;
+  border: 1px solid black;
+}
+/*@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
 }
 
 @keyframes App-logo-spin {
@@ -35,4 +253,4 @@
   to {
     transform: rotate(360deg);
   }
-}
+}*/
