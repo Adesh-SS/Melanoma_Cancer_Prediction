@@ -1,0 +1,29 @@
+.image-slideshow {
+    position: relative;
+  }
+  
+  .image-slideshow img {
+    width: 33em;
+    height: 18em;
+    z-index: 2;
+    border-radius: 1em;
+    position: relative;
+  }
+  
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 2rem;
+    cursor: pointer;
+    z-index: 2;
+  }
+  
+  .arrow-left {
+    left: 0;
+  }
+  
+  .arrow-right {
+    right: 0;
+  }
+  

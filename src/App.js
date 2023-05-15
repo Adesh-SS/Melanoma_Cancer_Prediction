@@ -7,8 +7,9 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import TwitterIcon from '@mui/icons-material/Twitter';
 import logo from './page_logo.png';
-import Button from './Button.js';
 import Cards from './PreventionCards.js';
+import US from './AboutUs.js';
+import Predict from './Predict.js';
 
 function App() {
 
@@ -77,11 +78,14 @@ function App() {
             it can spread quickly to other parts of the body, including the lymph nodes and organs</p>
             <hr />
             <div className='PredictionFolder-ButtonDiv'>
-              <Button />
+              <Predict />
             </div>
         </div>
       </div>
       <div className='PreventionSpace' id='prevention'><Cards /></div>
+      <div className='AboutUsSpace'>
+        <div className='AboutUsSpace-Div'><US /></div>
+      </div>
     </div>
   );
 }
