@@ -44,7 +44,7 @@ function App() {
               .typeString("MELANOMA CANCER PREDICTION")
               .pauseFor(1000)
               .deleteAll()
-              .typeString("Find Your Stage")
+              .typeString("Find Your Status")
               .pauseFor(1000)
               .deleteAll()
               .typeString("Know The Preventions")

@@ -2,6 +2,7 @@ import React, { useState,useRef,useEffect} from 'react';
 import Modal from 'react-modal';
 import './Predict.css';
 import axios from 'axios';
+import Dropzone from 'react-dropzone';
 
 {/*Modal size*/}
 const customStyles = {
@@ -30,7 +31,6 @@ const App = (props) => {
   const [number, setNumber] = useState('');
   const [email, setEmail] = useState('');
   const [file1, setFile1] = useState(null);
-  const fileInputRef = useRef(null);
   const [prediction, setPrediction] = useState(null);
   const [description, setDescription] = useState(null);
   const myDiv = useRef(null);
@@ -38,6 +38,10 @@ const App = (props) => {
   {/*Open and close modal*/}
   const openModal = () => {
     setModalIsOpen(true);
+  };
+
+  const handleFileDrop = (files) => {
+    setFile1(files[0])
   };
 
   const closeModal = () => {
@@ -49,7 +53,6 @@ const App = (props) => {
     setName('');
     setEmail('');
     setNumber('');
-    fileInputRef.current.value='';
     setFile1(null);
   };
 
@@ -67,20 +70,28 @@ const App = (props) => {
   };
 
   {/*Predict button function*/}
-  const handleSubmit = async () => {
-    const file = fileInputRef.current.files[0];
-    const reader = new FileReader();
-    reader.onload = async (event) => {
-      const image = event.target.result;
-      try {
-        const response = await axios.post('/predict', { image });
+  const handleSubmit = async (e) => {
+    
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('name', name);
+    formData.append('mobile', number);
+    formData.append('email', email);
+    formData.append('pic', file1)
+
+    try{
+      await axios.post('http://127.0.0.1:5000/api/upload', formData, {
+        headers:{
+          'Content-Type' : 'multipart/form-data',
+        },
+      }).then((response) => {
         setPrediction(response.data.prediction);
-        setDescription(response.data.description);
-      } catch (error) {
-        console.error(error);
-      }
-    };
-    reader.readAsDataURL(file);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+
     myDiv.current.scrollIntoView({behavior:"smooth"});
     };
 
@@ -112,33 +123,37 @@ const [imageData, setImageData] = useState(null);
         onRequestClose={closeModal}
         style={customStyles}
       >
+        <form>
        <div className='details'>
         <div className='name-mob'>
           <div className='inputGroup'>
-            <form>
             <input type="text" value={name} onChange={handleName} />
               <label for="name">Name</label>
-            </form>
           </div>
           <div className='inputGroup'>
-            <form>
             <input type="number" value={number} onChange={handleNumber} />
               <label for="mobile">Mobile</label>
-            </form>
           </div>
         </div>
         <div className='email'>
           <div className='emailGroup'>
-            <form>
             <input type="email" value={email} onChange={handleEmail} />
               <label for="email">Email</label>
-            </form>
           </div>
         </div>
         <div className='fileupload'>
         <div className='inputsection'>
               <h4>Skin Image:</h4>
-              <input type='file' accept='*/image' className='bn' name={file1} ref={fileInputRef} required/>
+              <Dropzone onDrop={handleFileDrop}>
+                {
+                  ({getRootProps, getInputProps}) => (
+                    <div {...getRootProps()}>
+                      <input {...getInputProps()}></input>
+                      {file1 ? (<img src={URL.createObjectURL(file1)} height={145} width={145} alt='Retina'/>):(<a className='predict-button'>Drag n Drop, or Click to select</a  >)}
+                    </div>
+                  )
+                }
+              </Dropzone>
             </div>
         </div>
        </div>
@@ -155,6 +170,7 @@ const [imageData, setImageData] = useState(null);
           <span>Close</span>
         </button>
         </div>
+        </form>
         <div className='contentcontainer' ref={myDiv}>
           <div className='detailcontainer'>
             <div className='innerdetailcontainer'>
@@ -171,7 +187,7 @@ const [imageData, setImageData] = useState(null);
             </div>
             <div className='innerdetailcontainer'>
               <h4>Cancer Status :</h4>
-              <p></p>
+              <p>{prediction}</p>
             </div>
           </div>
           <div className='imagecontiner'>

@@ -263,6 +263,50 @@ html {
   align-items: center;
   justify-content: center;
 }
+
+/**@media screen and (max-width: 1920px){
+  .navibar {
+    margin-right: -7em;
+  }
+  
+  .navibar a {
+    font-size: .7em;
+  }
+
+  .TitleBefore{
+    margin-left: 7em;
+    margin-top: 4em;
+  }
+
+  .TypeWord {
+    margin-left: 6em;
+  }
+
+  .JumpInTag p {
+    margin-top: 15em;
+  }
+
+  .JumpInTag div {
+    margin-top: 11.8em;
+  }
+
+  .PredictSpace {
+    height: 60em;
+  }
+
+  .PredictSpace-BorderDiv {
+    margin-left: 30em;
+    margin-top: 12em;
+  }
+
+  .PredictionFolder {
+    left: 40em;
+  }
+
+  .PreventionSpace {
+    height: 60em;
+  }
+}**/
 /*@media (prefers-reduced-motion: no-preference) {
   .App-logo {
     animation: App-logo-spin infinite 20s linear;
