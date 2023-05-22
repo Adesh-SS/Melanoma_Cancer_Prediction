@@ -11,14 +11,14 @@ import cv2
 app = Flask(__name__)
 CORS(app)
 
-MODEL = load_model('accuracy2.h5')
+MODEL = load_model('accuracy.h5')
 
 @app.route('/api/upload', methods=['POST'])
 def upload_func():
 
     pic = request.files.get('pic')
 
-    PATH = os.path.join(r'C:\Users\adesh\HTML\React\App\melanoma-prediction\saved_images', pic.filename)
+    PATH = os.path.join(r'C:\Users\adesh\WEB_DEVS\React\App\melanoma-prediction\saved_images', pic.filename)
 
     pic.save(PATH)
 
@@ -52,8 +52,13 @@ def upload_func():
 
     prediction = MODEL.predict(image_predict)
 
+    print(prediction)
+
     prediction_labels = ['Class 0', 'Class 1']
-    predicted_class = prediction_labels[np.argmax(prediction)]
+    #predicted_class = prediction_labels[np.argmax(prediction)]
+
+    threshold = 0.5
+    predicted_class = prediction_labels[0] if prediction < threshold else prediction_labels[1]
 
     CLASSES = {'Class 0':'Non Cancerous', 'Class 1':'Cancerous'}
 
